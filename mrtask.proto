@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package mapreducetask;
+
+service MRTask {
+  rpc SendTask (IDemandATask) returns (Task) {}
+  rpc TaskDone (IAmDone) returns (Okay) {}
+}
+
+message IDemandATask {}
+message IAmDone {}
+message Okay {}
+
+message Task {
+  bool map_task = 1;
+  int32 task_id = 2;
+  repeated MetaData fileinfo = 3;
+  int32 task_param = 4;
+}
+
+message MetaData{
+  int32 fileindex = 5;
+  int64 startseek = 6;
+  int64 chunksize = 7;
+}
